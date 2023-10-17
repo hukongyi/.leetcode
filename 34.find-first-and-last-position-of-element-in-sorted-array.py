@@ -20,11 +20,15 @@ class Solution:
         ans = r
         while(l <= r):
             mid = l + (r - l) // 2
+            print(higher, mid, l, r)
             if (nums[mid] < target) or (higher and (nums[mid] <= target)):
                 l = mid + 1
                 ans = mid
             else:
                 r = mid - 1
+
+        if higher == 0 and ans == 0 and nums[ans] == target:
+            return ans-1
         return ans
 
     def searchRange(self, nums: List[int], target: int) -> List[int]:
@@ -54,7 +58,7 @@ class Solution:
 # @lcpr case=end
 
 # @lcpr case=start
-# [1]\n1\n
+# [2,2]\n2\n
 # @lcpr case=end
 
 #
