@@ -15,32 +15,29 @@ from typing import *
 
 # @lcpr-template-end
 # @lc code=start
-class Solution:
-    def binsearch(self, nums, target, l, r, higher):
-        ans = r
-        while(l <= r):
-            mid = l + (r - l) // 2
-            print(higher, mid, l, r)
-            if (nums[mid] < target) or (higher and (nums[mid] <= target)):
-                l = mid + 1
-                ans = mid
-            else:
-                r = mid - 1
 
-        if higher == 0 and ans == 0 and nums[ans] == target:
-            return ans-1
-        return ans
-
-    def searchRange(self, nums: List[int], target: int) -> List[int]:
-        if len(nums) == 0:
-            return [-1, -1]
-        l = self.binsearch(nums, target, 0, len(nums) - 1, 0) + 1
-        r = self.binsearch(nums, target, l, len(nums) - 1, 1)
-        print(l, r)
-        if (l <= r) and (nums[l] == target):
-            return [l, r]
+def lower_bound(nums: List[int], target: int) -> int:
+    left, right = 0, len(nums) - 1  # 闭区间 [left, right]
+    while left <= right:  # 区间不为空
+        # 循环不变量：
+        # nums[left-1] < target
+        # nums[right+1] >= target
+        mid = (left + right) // 2
+        if nums[mid] < target:
+            left = mid + 1  # 范围缩小到 [mid+1, right]
         else:
+            right = mid - 1  # 范围缩小到 [left, mid-1]
+    return left  # 或者 right+1
+
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        start = lower_bound(nums, target)  # 选择其中一种写法即可
+        if start == len(nums) or nums[start] != target:
             return [-1, -1]
+        # 如果 start 存在，那么 end 必定存在
+        end = lower_bound(nums, target + 1) - 1
+        return [start, end]
+
 # @lc code=end
 
 
