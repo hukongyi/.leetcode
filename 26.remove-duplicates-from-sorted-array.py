@@ -10,6 +10,7 @@
 
 # @lcpr-template-end
 # @lc code=start
+from typing import List
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
         slow = 1

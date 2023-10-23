@@ -20,7 +20,7 @@ class Solution:
                 ans = i
             elif num > max2:
                 max2 = num
-        return ans if max1>=max2*2 else -1
+        return ans if max1 >= max2*2 else -1
 
 
 # @lc code=end
