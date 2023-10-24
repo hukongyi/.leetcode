@@ -12,8 +12,22 @@
 # @lc code=start
 class Solution:
     def minSubArrayLen(self, target: int, nums: List[int]) -> int:
-# @lc code=end
+        minlen = 1e5+1
+        subsum = 0
+        l = 0
+        r = 0
+        while(r < len(nums)):
+            subsum += nums[r]
+            r += 1
+            if subsum >= target:
+                while(subsum >= target):
+                    subsum -= nums[l]
+                    l += 1
+                minlen = min(minlen, r-l+1)
+        return minlen if minlen != 1e5+1 else 0
 
+
+# @lc code=end
 
 
 #
@@ -30,4 +44,3 @@ class Solution:
 # @lcpr case=end
 
 #
-
