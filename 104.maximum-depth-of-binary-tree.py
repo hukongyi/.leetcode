@@ -1,8 +1,8 @@
 #
-# @lc app=leetcode.cn id=117 lang=python3
-# @lcpr version=30104
+# @lc app=leetcode.cn id=104 lang=python3
+# @lcpr version=30112
 #
-# [117] 填充每个节点的下一个右侧节点指针 II
+# [104] 二叉树的最大深度
 #
 
 
@@ -10,22 +10,20 @@
 
 # @lcpr-template-end
 # @lc code=start
-"""
-# Definition for a Node.
-class Node:
-    def __init__(self, val: int = 0, left: 'Node' = None, right: 'Node' = None, next: 'Node' = None):
-        self.val = val
-        self.left = left
-        self.right = right
-        self.next = next
-"""
-
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def connect(self, root: 'Node') -> 'Node':
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
         if root is None:
-            return root
+            return 0
         que = deque([root])
+        level = 0
         while que:
+            level += 1
             n = len(que)
             for i in range(n):
                 node = que.popleft()
@@ -35,20 +33,17 @@ class Solution:
                     que.append(node.left)
                 if node.right is not None:
                     que.append(node.right)
-        return root
-        
+        return level
 # @lc code=end
 
 
-
 #
 # @lcpr case=start
-# [1,2,3,4,5,null,7]\n
+# [3,9,20,null,null,15,7]\n
 # @lcpr case=end
 
 # @lcpr case=start
-# []\n
+# [1,null,2]\n
 # @lcpr case=end
 
 #
-

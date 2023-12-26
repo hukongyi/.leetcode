@@ -1,8 +1,8 @@
 #
-# @lc app=leetcode.cn id=117 lang=python3
-# @lcpr version=30104
+# @lc app=leetcode.cn id=116 lang=python3
+# @lcpr version=30112
 #
-# [117] 填充每个节点的下一个右侧节点指针 II
+# [116] 填充每个节点的下一个右侧节点指针
 #
 
 
@@ -20,8 +20,9 @@ class Node:
         self.next = next
 """
 
+
 class Solution:
-    def connect(self, root: 'Node') -> 'Node':
+    def connect(self, root: 'Optional[Node]') -> 'Optional[Node]':
         if root is None:
             return root
         que = deque([root])
@@ -33,17 +34,16 @@ class Solution:
                     node.next = que[0]
                 if node.left is not None:
                     que.append(node.left)
-                if node.right is not None:
                     que.append(node.right)
         return root
-        
-# @lc code=end
 
+
+# @lc code=end
 
 
 #
 # @lcpr case=start
-# [1,2,3,4,5,null,7]\n
+# [1,2,3,4,5,6,7]\n
 # @lcpr case=end
 
 # @lcpr case=start
@@ -51,4 +51,3 @@ class Solution:
 # @lcpr case=end
 
 #
-
