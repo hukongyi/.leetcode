@@ -18,8 +18,17 @@
 #         self.right = right
 class Solution:
     def buildTree(self, inorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
+        root = TreeNode(postorder[-1])
+        l_inorder = inorder[:inorder.index(postorder[-1])]
+        r_inorder = inorder[inorder.index(postorder[-1])+1:]
+        l_postorder = postorder[:len(l_inorder)]
+        r_postorder = postorder[len(l_inorder):-1]
+        if l_inorder:
+            root.left = self.buildTree(l_inorder, l_postorder)
+        if r_inorder:
+            root.right = self.buildTree(r_inorder, r_postorder)
+        return root
 # @lc code=end
-
 
 
 #
@@ -32,4 +41,3 @@ class Solution:
 # @lcpr case=end
 
 #
-

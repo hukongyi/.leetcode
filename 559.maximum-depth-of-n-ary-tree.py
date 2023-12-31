@@ -17,13 +17,24 @@ class Node:
         self.val = val
         self.children = children
 """
+from collections import deque
+
 
 class Solution:
     def maxDepth(self, root: 'Node') -> int:
-        
+        if root is None:
+            return 0
+        que = deque([root])
+        level = 0
+        while que:
+            level += 1
+            for _ in range(len(que)):
+                node = que.popleft()
+                for child in node.children:
+                    que.append(child)
+        return level
+
 # @lc code=end
-
-
 
 #
 # @lcpr case=start
@@ -35,4 +46,3 @@ class Solution:
 # @lcpr case=end
 
 #
-
