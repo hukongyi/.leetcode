@@ -10,18 +10,12 @@
 
 # @lcpr-template-end
 # @lc code=start
+from collections import Counter
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
-        latterA = [0]*26
-        latterB = [0]*26
-        for i in list(ransomNote):
-            latterA[ord(i)-ord("a")]+=1
-        for i in list(magazine):
-            latterB[ord(i)-ord("a")]+=1
-        for i in range(26):
-            if latterA[i]>latterB[i]:
-                return False
-        return True
+        ransomNote = Counter(ransomNote)
+        magazine = Counter(magazine)
+        return not ransomNote-magazine
 # @lc code=end
 
 
